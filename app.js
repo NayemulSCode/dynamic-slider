@@ -28,11 +28,13 @@ const showImages = (images) => {
 
 }
 
-const getImages = (query) => {
-  fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
-    .then(response => response.json())
-    .then(data => showImages(data.hits))
-    .catch(err => console.log(err))
+const getImages = async(query) => {
+  const url = `https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`
+  toggleSpinner() 
+  const response = await fetch(url)
+  const data = await response.json()
+  showImages(data.hits)
+  toggleSpinner() 
 }
 
 let slideIndex = 0;
@@ -129,3 +131,8 @@ document.getElementById('search')
     document.getElementById('search-btn').click();
   }
 })
+//spinner
+const toggleSpinner =()=>{
+  const toggleSpinner = document.getElementById('loadingImg');
+  toggleSpinner.classList.toggle('spinner');
+}
