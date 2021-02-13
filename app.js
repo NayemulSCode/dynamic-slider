@@ -121,3 +121,11 @@ searchBtn.addEventListener('click', function () {
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
+//enter key work
+document.getElementById('search')
+.addEventListener('keypress', function(event){
+  //console.log(event.key);
+  if(event.key == 'Enter'){
+    document.getElementById('search-btn').click();
+  }
+})
